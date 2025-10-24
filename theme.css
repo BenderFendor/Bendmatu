@@ -55,7 +55,7 @@ settings:
 
 /* vars */
 :root {
-  --tr: color-mix(in srgb, var(--wal-background) 40%, transparent);
+  --tr: color-mix(in srgb, var(--wal-background) 20%, transparent);
   --set-blur: 80px;
   --kolorboku: #ffffff;
   /* there is background */
@@ -102,6 +102,7 @@ body {
   --divider-width: 0px;
   --divider-color: var(--tr);
   --background-modifier-border: essaopie;
+  --text-normal: var(--wal-secondary_fixed_dim);
   color: var(--wal-inverse_surface);
 }
 .cm-s-obsidian .cm-line.HyperMD-header
