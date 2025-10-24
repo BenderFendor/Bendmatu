@@ -1,0 +1,735 @@
+/* 
+This Edited By Bender base code was created by Oczko24.
+For more details, visit:
+https://github.com/Oczko24/Obsidian-transparent
+
+*/
+
+/* @settings
+
+name: Components
+id: Components
+settings:
+    - 
+        id: autohide
+        title: Auto hide
+        title.zh: 自动隐藏
+        type: heading
+        collapsed: ture
+        level: 3
+    - 
+        id: tab-autohide
+        title: Auto hide tab bar
+        title.zh: 自动隐藏 tab栏
+        description: Mac users can adjust the position of the traffic light using the 'Electron Window Tweaker' plugin
+        description.zh: Mac 用户可以使用 “Electron Window Tweaker” 插件来调整左上角红绿灯的位置
+        type: class-toggle
+    - 
+        id: status-bar-autohide
+        title: Auto hide bottom status bar
+        title.zh: 自动隐藏 底部状态栏
+        type: class-toggle
+    - 
+        id: Ribbon-autohide
+        title: Auto hide left ribbon menu
+        title.zh: 自动隐藏 左侧功能区菜单
+        type: class-toggle
+    - 
+        id: nav-header-autohide
+        title: Auto hide header icons in sidepane
+        title.zh: 自动隐藏 侧边面板中的头部按钮
+        type: class-toggle
+    - 
+        id: tab-title-bar-autohide
+        title: Auto hide tab title bar
+        title.zh: 自动隐藏 标签页标题栏
+        type: class-toggle
+    - 
+        id: vault-profile-autohide
+        title: Auto hide vault profile
+        title.zh: 自动隐藏 vault 配置栏
+        type: class-toggle
+  */
+
+
+
+/* vars */
+:root {
+  --tr: color-mix(in srgb, var(--wal-background) 40%, transparent);
+  --set-blur: 80px;
+  --kolorboku: #ffffff;
+  /* there is background */
+
+  --mobile-sidebar-min-width: 100vw
+}
+.theme-dark
+{
+  --color-accent: var(--wal-primary);
+  --accent: var(--wal-primary);
+  --accent-1: var(--wal-secondary);
+  --text-accent-hover: var(--wal-source_color);
+  --text-accent: var(--wal-secondary);
+  --text-on-accent: var(--wal-surface_tint);
+  --text-muted: var(--wal-secondary_fixed_dim);
+  --color-red: var(--wal-red);
+  --color-orange: var(--wal-orange);
+  --color-yellow: var(--wal-yellow);
+  --color-green: var(--wal-green);
+  --color-cyan: var(--wal-cyan);
+  --color-blue: var(--wal-blue);
+  --color-purple: var(--wal-purple);
+  --color-pink: var(--wal-pink);
+  --italic-color: var(--wal-primary);
+  --background-modifier-hover: var(--wal-secondary_fixed_dim);
+  --background-modifier-active-hover: var(--wal-secondary_fixed_dim);
+}
+body {
+  --h1-font: Instrument Serif;
+  --h2-font: Instrument Serif;
+  --h3-font: Instrument Serif;
+  --h4-font: Instrument Serif;
+  --h5-font: Instrument Serif;
+  --h6-font: Instrument Serif;
+  --h1-size: 2.25em;
+  --h2-size: 2em;
+  --h3-size: 1.75em;
+  --h4-size: 1.5em;
+  --h5-size: 1.25em;
+  --h6-size: 1em;
+  --h1-weight: 700;
+  --background-primary: var(--tr);
+  --background-secondary: var(--tr);
+  --divider-width: 0px;
+  --divider-color: var(--tr);
+  --background-modifier-border: essaopie;
+  color: var(--wal-inverse_surface);
+}
+.cm-s-obsidian .cm-line.HyperMD-header
+{
+  letter-spacing: 0.03em;
+}
+.theme-light .workspace {
+  backdrop-filter: brightness(3) blur(var(--set-blur));
+  --icon-color: #000000;
+  --icon-color: var(--kolorboku);
+}
+.nav-file-title, .nav-folder-title {
+  color: var(--kolorboku);
+}
+
+.theme-dark .workspace {
+  backdrop-filter: brightness(0.5) blur(var(--set-blur));
+  --icon-color: #ffffff;
+}
+
+.theme-light {
+  --brightness: 3;
+}
+.theme-dark {
+  --brightness: 0.50;
+}
+
+.nav-file-title,
+.nav-folder-title {
+  color: var(--kolorboku);
+}
+
+
+.workspace-split.mod-root {
+  background-color: var(--background-primary);
+}
+
+/* there is background image coded in base64 in var. Change it if you wanna. */
+.horizontal-main-container { 
+  background-size: cover;
+  background-position: absolute;
+}
+body.is-focused .titlebar,
+body.is-focused .workspace-ribbon.mod-left {
+  --titlebar-background: var(--tr);
+}
+
+
+.workspace-tab-header-container {
+  background-color: var(--tr);
+}
+
+.is-hidden-frameless:not(.is-fullscreen).is-focused .titlebar-button-container.mod-right {
+  background-color: var(--tr);
+}
+
+.modal {
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+  border: 1px solid var(--tr);
+  background-color: var(--tr);
+  position: relative;
+  z-index: 1000;
+}
+.modal-bg {
+  width: 100%;
+  background-color: var(--tr);
+}
+.menu {
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+  border: 1px solid var(--tr);
+}
+
+.prompt {
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+  border: 1px solid var(--tr);
+  background-color: var(--tr);
+}
+
+
+/* dont add blur in small places because its useless */
+textarea,
+input.metadata-input-text,
+input[type='date'],
+input[type='datetime-local'],
+input[type='text'],
+input[type='search'],
+input[type='email'],
+input[type='password'],
+input[type='number'] {
+
+  background-color: #00000060;
+}
+
+.suggestion-container.mod-search-suggestion {
+  background-color: var(--tr);
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+  border-color: var(--tr);
+  max-height: 600px;
+}
+
+/* finnally buttons look good */
+button:not(.clickable-icon) {
+  background-color: var(--color-accent);
+  box-shadow: none;
+  color: #060606;
+}
+button {
+  color: #060606;
+}
+
+
+
+/* sliders */
+input[type='range'] {
+  background-color: #00000060;
+}
+
+/* presentation background fix */
+.reveal .slide-background-content { 
+  background-size: cover;
+  filter: brightness(var(--brightness)) blur(var(--set-blur));
+}
+
+
+/* done task fix */
+input[type=checkbox]:checked:after {
+  background-color: #1C2E28;
+}
+
+
+select,
+.dropdown {
+  background-color: #00000060;
+  backdrop-filter: blur(var(--set-blur));
+  box-shadow: none;
+}
+.suggestion { 
+    background-color: var(--tr);
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur)); /* tasks integration */
+}
+.status-bar {
+  backdrop-filter: blur(2px);
+}
+.notice {
+    background-color: var(--tr);
+    backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));   
+}
+
+/* graph view */
+.graph-controls {
+  background-color: rgba(0, 0, 0, var(--brightness));
+}
+.graph-controls:not(.is-close) {
+  box-shadow: none;
+}
+
+/* code blocks */
+.cm-s-obsidian div.HyperMD-codeblock-bg {
+  background-color: #00000060;
+}
+.markdown-source-view.mod-cm6 .cm-indent::before {
+  border-inline-end: 0;
+}
+.cm-s-obsidian .cm-inline-code:not(.cm-formatting) {
+  background-color: #00000060; /* smol */
+}
+.markdown-rendered pre {
+  background-color: #00000060;
+}
+.markdown-rendered code {
+  background-color: #00000060; /* both for read mode */
+}
+.cm-s-obsidian span.cm-inline-code {
+  background-color: #00000060; /* source mode edit */
+}
+.checkbox-container:after {
+  background-color: #00000099;
+}
+element.style {
+  visibility: visible; /* idk if its matters but it icon look like refresh */
+}
+.slider {
+  color: #000000;
+  background-color: #000000;
+}
+input[type="range"]::-webkit-slider-thumb {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+
+}
+/* canvas */
+.canvas-control-item {
+  background-color: #00000000;
+}
+
+.canvas-card-menu {
+  box-shadow: none;
+}
+.canvas-control-group {
+  box-shadow: none;
+}
+
+/* hover on links */ 
+.popover.hover-popover .markdown-preview-view {
+  background-color: var(--tr);
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+}
+
+.file-embed {
+  background-color: #00000060;
+}
+
+
+
+/* make.md integration */
+
+}
+.mk-menu-container {
+  width: auto;
+  background-color: var(--tr);
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+}
+/* templater code look better */ 
+.cm-s-obsidian .templater-command-bg {
+  background-color: #00000060;
+}
+/* ================================== TESTING ANIMATIONS ================================== */
+/* Keyframes for the opening animation */
+@keyframes modalOpen {
+  0% {
+    opacity: 0; /* Initially invisible */
+    transform: translateY(-20px); /* Start slightly off-screen */
+  }
+  100% {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* End at the final position */
+  }
+}
+
+/* When the modal is closed, apply this animation */
+.modal-container.mod-dim .modal.closed {
+  animation: modalClose 0.3s ease-in forwards; /* Animation for closing */
+}
+
+/* Keyframes for the closing animation */
+@keyframes modalClose {
+  0% {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Current position */
+  }
+  100% {
+    opacity: 0; /* Fully hidden */
+    transform: translateY(-20px); /* Move off-screen */
+  }
+}
+/* ================================== TESTING ANIMATIONS ================================== */
+/* better settings */ 
+.vertical-tab-header-group-title {
+  color: var(--color-accent);
+}
+
+/* mobile (unended) */
+
+
+.is-phone, .workspace-drawer {
+  background-color: #000000;
+  position: fixed;
+  z-index: 10000000;
+}
+
+.mobile-toolbar-options-list {
+  background-color: var(--tr);
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+  border-color: var(--tr);
+}
+.mobile-toolbar {
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+  background-color: var(--tr);
+}
+.mobile-navbar {
+  background-color: #000000;
+  backdrop-filter: brightness(var(--brightness)) blur(var(--set-blur));
+  padding: var(--size-4-2) max(var(--safe-area-inset-right), var(--size-4-4)) max(var(--size-4-2), var(--safe-area-inset-bottom)) max(var(--safe-area-inset-left), var(--size-4-4));
+  position: relative;
+  z-index: 1;
+}
+.is-phone .workspace-split {
+    padding-top: 0;
+}
+.is-phone .mobile-tab-switcher {
+  backdrop-filter: blur(var(--set-blur));
+}
+
+/*tab autohide Credit to the border theme for this code snippets*/
+
+body:not(.is-mobile).tab-autohide .workspace-tabs {
+    gap: 0px;
+    transition: gap var(--anim-out);
+}
+
+body:not(.is-mobile).tab-autohide :has(.workspace-tab-header-container:hover) .workspace-tabs:hover {
+    gap: 4px;
+    transition: gap var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide .workspace-tab-header-container {
+    height: 16px;
+    opacity: 0;
+    transition: height var(--anim-out), opacity var(--anim-out);
+}
+
+body:not(.is-mobile).tab-autohide .workspace-tab-header-container:hover {
+    height: 40px;
+    opacity: 1;
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide .workspace-tab-header-container-inner {
+    transform: translateY(-22px);
+    opacity: 0;
+    transition: transform var(--anim-out), opacity var(--anim-out);
+}
+
+body:not(.is-mobile).tab-autohide .workspace-tab-header-container:hover .workspace-tab-header-container-inner,
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .mod-top .workspace-tab-header-container-inner {
+    transform: translateY(0px);
+    opacity: 1;
+    transition: transform var(--anim-in), opacity var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide:not(.card-layout-open-light).theme-light .workspace-tabs:not(.mod-top) .workspace-tab-container>.workspace-leaf,
+body:not(.is-mobile).tab-autohide:not(.card-layout-open-dark).theme-dark .workspace-tabs:not(.mod-top) .workspace-tab-container>.workspace-leaf {
+    box-shadow: inset 0px 1px 0px transparent;
+    transition: box-shadow var(--anim-out);
+}
+
+body:not(.is-mobile).tab-autohide:not(.card-layout-open-light).theme-light :has(.workspace-tab-header-container:hover) .workspace-tabs:not(.mod-top):hover .workspace-tab-container>.workspace-leaf,
+body:not(.is-mobile).tab-autohide:not(.card-layout-open-dark).theme-dark :has(.workspace-tab-header-container:hover) .workspace-tabs:not(.mod-top):hover .workspace-tab-container>.workspace-leaf {
+    box-shadow: inset 0px 1px 0px var(--workspace-divider-color);
+    transition: box-shadow var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide.is-hidden-frameless .titlebar-button {
+    height: 100%;
+}
+
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .titlebar-button {
+    height: 44px;
+}
+
+/*tab autohide mod-top*/
+
+body:not(.is-mobile).tab-autohide .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    height: calc(var(--divider-vertical-height) + 24px);
+    transition: height var(--anim-out), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    transition: height var(--anim-in), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    height: calc(var(--divider-vertical-height) - 4px);
+    transition: height var(--anim-in), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+body:not(.is-mobile).tab-autohide.is-hidden-frameless .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.is-hidden-frameless .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.is-hidden-frameless .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    height: calc(var(--divider-vertical-height) - 16px);
+    transition: height var(--anim-out), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    transition: height var(--anim-in), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+body:not(.is-mobile).tab-autohide.is-hidden-frameless:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.is-hidden-frameless:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.is-hidden-frameless:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    height: calc(var(--divider-vertical-height) - var(--header-height) - 4px);
+    transition: height var(--anim-in), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+/*---*/
+
+body:not(.is-mobile).tab-autohide .workspace-tabs.mod-top {
+    gap: 0px;
+    transition: gap var(--anim-out);
+}
+
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-tabs.mod-top {
+    transition: gap var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace-tabs.mod-top {
+    gap: 4px;
+    transition: gap var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide .workspace::before {
+    height: calc(100% - 16px);
+}
+
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .workspace::before {
+    height: calc(100% - 44px);
+}
+
+body:not(.is-mobile).tab-autohide.is-hidden-frameless .titlebar-button-container,
+body:not(.is-mobile).tab-autohide .mod-top .workspace-tab-header-container {
+    height: 16px;
+    opacity: 0;
+    transition: height var(--anim-out), opacity var(--anim-out);
+}
+
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover) .mod-top .workspace-tab-header-container {
+    height: 40px;
+    opacity: 1;
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:hover, .titlebar-button-container:hover).is-hidden-frameless .titlebar-button-container {
+    height: 44px;
+    opacity: 1;
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .titlebar-button-container,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .mod-top .workspace-tab-header-container {
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+
+/*status bar autohide*/
+body:not(.is-mobile).status-bar-autohide .status-bar {
+    opacity: 0;
+    height: 16px;
+    transition: height var(--anim-out), opacity var(--anim-out);
+}
+
+body:not(.is-mobile).status-bar-autohide .status-bar:hover {
+    opacity: 1;
+    height: 24px;
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+
+body:not(.is-mobile).status-bar-autohide .horizontal-main-container {
+    padding-bottom: 16px;
+    transition: padding-bottom var(--anim-out);
+}
+
+body:not(.is-mobile).status-bar-autohide:has(.status-bar:hover) .horizontal-main-container {
+    padding-bottom: 24px;
+    transition: padding-bottom var(--anim-in);
+}
+
+/* Related rules from tab-autohide that might be needed if status-bar-autohide is used with it */
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    transition: height var(--anim-in), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .workspace-split.mod-left-split>.workspace-leaf-resize-handle,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .workspace-split.mod-right-split>.workspace-leaf-resize-handle {
+    transition: height var(--anim-in), background-color 200ms ease-in-out, border-color 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .workspace-tabs.mod-top {
+    transition: gap var(--anim-in);
+}
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover).is-hidden-frameless .titlebar-button-container,
+body:not(.is-mobile).tab-autohide.status-bar-autohide:has(.status-bar:hover) .mod-top .workspace-tab-header-container {
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+
+/*ribbon autohide*/
+body:not(.is-mobile).Ribbon-autohide.show-ribbon .workspace-ribbon.side-dock-ribbon.mod-left {
+    --ribbon-width: 16px;
+    transition: all var(--anim-out);
+}
+
+body:not(.is-mobile).Ribbon-autohide.show-ribbon .workspace-ribbon.side-dock-ribbon.mod-left:hover {
+    --ribbon-width: 44px;
+    transition: all var(--anim-in);
+}
+
+body:not(.is-mobile).Ribbon-autohide.show-ribbon .workspace-ribbon.side-dock-ribbon.mod-left>* {
+    opacity: 0;
+    transition: all var(--anim-out);
+}
+
+body:not(.is-mobile).Ribbon-autohide.show-ribbon .workspace-ribbon.side-dock-ribbon.mod-left:hover>* {
+    opacity: 1;
+    transition: all var(--anim-in);
+}
+
+body:not(.is-mobile).Ribbon-autohide.show-ribbon .workspace::before {
+    width: calc(100% - 16px);
+}
+
+body:not(.is-mobile).Ribbon-autohide.show-ribbon:has(.workspace-ribbon.side-dock-ribbon:hover) .workspace::before {
+    width: calc(100% - 44px);
+}
+
+/* macos autohide fix*/
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen) .mod-left-split .mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen) .workspace:not(.is-left-sidedock-open) .sidebar-toggle-button.mod-left {
+    margin-left: 28px;
+}
+
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen):has(.workspace-ribbon.side-dock-ribbon:hover) .mod-left-split .mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen):has(.workspace-ribbon.side-dock-ribbon:hover) .workspace:not(.is-left-sidedock-open) .sidebar-toggle-button.mod-left {
+    margin-left: 0px;
+}
+
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen) .mod-left-split .mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen) .workspace:not(.is-left-sidedock-open) .sidebar-toggle-button.mod-left {
+    transition: height var(--anim-out), opacity var(--anim-out), margin-left var(--anim-out);
+}
+
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen):has(.workspace-ribbon.side-dock-ribbon:hover) .mod-left-split .mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile):not(.is-popout-window).Ribbon-autohide.show-ribbon.mod-macos.is-hidden-frameless:not(.is-fullscreen):has(.workspace-ribbon.side-dock-ribbon:hover) .workspace:not(.is-left-sidedock-open) .sidebar-toggle-button.mod-left {
+    transition: height var(--anim-out), opacity var(--anim-out), margin-left var(--anim-in);
+}
+
+/*nav header autohide*/
+body:not(.is-mobile).nav-header-autohide :is(.workspace-leaf-content, .view-content)>.nav-header .nav-buttons-container {
+    height: 8px;
+    opacity: 0;
+    transition: height var(--anim-out), opacity var(--anim-out);
+}
+
+body:not(.is-mobile).nav-header-autohide :is(.workspace-leaf-content, .view-content)>.nav-header:hover .nav-buttons-container,
+body:not(.is-mobile).nav-header-autohide .workspace-tab-header-container:hover~.workspace-tab-container :is(.workspace-leaf-content, .view-content)>.nav-header .nav-buttons-container,
+body:not(.is-mobile).tab-title-bar-autohide.nav-header-autohide .mod-root .workspace-leaf-content[data-type="backlink"] .view-header:hover~.view-content>.nav-header .nav-buttons-container {
+    height: 32px;
+    opacity: 1;
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+
+body:not(.is-mobile).nav-header-autohide :is(.workspace-leaf-content, .view-content)>.nav-header .search-input-container {
+    height: 0px;
+    opacity: 0;
+    margin: 0px auto 0px;
+    transition: height var(--anim-out), opacity var(--anim-out), margin var(--anim-out);
+}
+
+body:not(.is-mobile).nav-header-autohide :is(.workspace-leaf-content, .view-content)>.nav-header:hover .search-input-container,
+body:not(.is-mobile).nav-header-autohide .workspace-tab-header-container:hover~.workspace-tab-container :is(.workspace-leaf-content, .view-content)>.nav-header .search-input-container,
+body:not(.is-mobile).tab-title-bar-autohide.nav-header-autohide .mod-root .workspace-leaf-content[data-type="backlink"] .view-header:hover~.view-content>.nav-header .search-input-container {
+    height: 30px;
+    opacity: 1;
+    margin: 6px auto 4px;
+    transition: height var(--anim-in), opacity var(--anim-in), margin var(--anim-in);
+    ;
+}
+
+/*view-header autohide */
+
+body:not(.is-mobile).tab-title-bar-autohide .view-header::after {
+    width: 100%;
+    content: " ";
+    background-color: transparent;
+    height: var(--size-4-4);
+    position: absolute;
+    z-index: -9;
+    top: 1px;
+    right: 0;
+}
+
+body:not(.is-mobile).tab-title-bar-autohide .workspace-leaf .view-header {
+    height: 0;
+    margin-top: -1px;
+    opacity: 0;
+    transition: height var(--anim-out), margin var(--anim-out), opacity var(--anim-out);
+}
+
+body:not(.is-mobile).tab-title-bar-autohide .workspace-leaf .view-header:focus-within,
+body:not(.is-mobile).tab-title-bar-autohide .workspace-leaf .view-header:hover,
+body:not(.is-mobile).tab-title-bar-autohide .workspace-tab-header-container:hover~.workspace-tab-container .view-header {
+    height: var(--header-height);
+    margin-top: 0px;
+    opacity: 1;
+    transition: height var(--anim-in), margin var(--anim-in), opacity var(--anim-in);
+}
+
+/* Related rules from nav-header-autohide that might be needed */
+body:not(.is-mobile).tab-title-bar-autohide.nav-header-autohide .mod-root .workspace-leaf-content[data-type="backlink"] .view-header:hover~.view-content>.nav-header .nav-buttons-container {
+    height: 32px;
+    opacity: 1;
+    transition: height var(--anim-in), opacity var(--anim-in);
+}
+body:not(.is-mobile).tab-title-bar-autohide.nav-header-autohide .mod-root .workspace-leaf-content[data-type="backlink"] .view-header:hover~.view-content>.nav-header .search-input-container {
+    height: 30px;
+    opacity: 1;
+    margin: 6px auto 4px;
+    transition: height var(--anim-in), opacity var(--anim-in), margin var(--anim-in);
+    ;
+}
+
+/* vault profile autohide*/
+body:not(.is-mobile).vault-profile-autohide .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+    height: 16px;
+    border-top: 0 solid transparent;
+    opacity: 0;
+    transition: height var(--anim-out), border-top var(--anim-out), opacity var(--anim-out);
+}
+
+body:not(.is-mobile).vault-profile-autohide .workspace-split.mod-left-split .workspace-sidedock-vault-profile:hover {
+    height: 44px;
+    border-top: var(--tab-outline-width) solid var(--tab-outline-color);
+    opacity: 1;
+    transition: height var(--anim-in), border-top var(--anim-in), opacity var(--anim-in);
+}
+
+body:not(.is-mobile).vault-profile-autohide .workspace-split.mod-left-split .workspace-tabs:last-of-type .workspace-tab-container {
+    padding-bottom: 0px;
+    transition: padding-bottom var(--anim-out);
+}
+
+body:not(.is-mobile).vault-profile-autohide:has(.workspace-sidedock-vault-profile:hover) .workspace-split.mod-left-split .workspace-tabs:last-of-type .workspace-tab-container {
+    padding-bottom: 44px;
+    transition: padding-bottom var(--anim-in);
+}
