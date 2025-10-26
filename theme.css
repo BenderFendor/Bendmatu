@@ -108,6 +108,7 @@ body {
 .cm-s-obsidian .cm-line.HyperMD-header
 {
   letter-spacing: 0.03em;
+  padding-bottom: 0.2em;
 }
 .theme-light .workspace {
   backdrop-filter: brightness(3) blur(var(--set-blur));
