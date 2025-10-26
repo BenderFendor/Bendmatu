@@ -523,6 +523,7 @@ body:not(.is-mobile).tab-autohide.is-hidden-frameless .titlebar-button-container
 body:not(.is-mobile).tab-autohide .mod-top .workspace-tab-header-container {
     height: 16px;
     opacity: 0;
+    background-color: var(--background-secondary);
     transition: height var(--anim-out), opacity var(--anim-out);
 }
 
