@@ -55,8 +55,8 @@ settings:
 
 /* vars */
 :root {
-  --tr: color-mix(in srgb, var(--wal-background) 20%, transparent);
-  --set-blur: 80px;
+  --tr: color-mix(in srgb, var(--wal-background) 70%, transparent);
+  --set-blur: 120px;
   --kolorboku: #ffffff;
   /* there is background */
 
@@ -97,13 +97,17 @@ body {
   --h5-size: 1.25em;
   --h6-size: 1em;
   --h1-weight: 700;
-  --background-primary: var(--tr);
-  --background-secondary: var(--tr);
+  --background-primary: 0%;
+  --background-secondary: 0%;
   --divider-width: 0px;
   --divider-color: var(--tr);
   --background-modifier-border: essaopie;
   --text-normal: var(--wal-secondary_fixed_dim);
   color: var(--wal-inverse_surface);
+}
+.app-container
+{
+  background-color: var(--tr);
 }
 .cm-s-obsidian .cm-line.HyperMD-header
 {
@@ -522,9 +526,8 @@ body:not(.is-mobile).tab-autohide:has(.mod-top>.workspace-tab-header-container:h
 
 body:not(.is-mobile).tab-autohide.is-hidden-frameless .titlebar-button-container,
 body:not(.is-mobile).tab-autohide .mod-top .workspace-tab-header-container {
-    height: 16px;
+    height: 30px;
     opacity: 0;
-    background-color: var(--background-secondary);
     transition: height var(--anim-out), opacity var(--anim-out);
 }
 
